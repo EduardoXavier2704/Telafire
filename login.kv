@@ -1,0 +1,150 @@
+<TelaLogin>
+
+    orientation: "vertical"
+
+    FloatLayout:
+
+        Image:
+            source: "./imagens/iconeperfil.jpg"
+            size_hint: None, None
+            size: 450, 100
+            pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+
+        Label:
+            text: 'Email:'
+            font_size: 20
+            font_name: 'Georgia'
+            color: (0.69, 0.52, 0.58, 1)
+            size_hint: None, None
+            size: self.texture_size[0], self.texture_size[1]
+            pos_hint: {'center_x': 0.5, 'top': 0.68}
+
+        Label:
+            text: 'Senha:'
+            font_size: 20
+            font_name: 'Georgia'
+            color: (0.69, 0.52, 0.58, 1)
+            size_hint: None, None
+            size: self.texture_size[0], self.texture_size[1]
+            pos_hint: {'center_x': 0.5, 'top': 0.48}
+
+        TextInput:
+            id: texto_email
+            hint_text: "Insira seu email ..."
+            size_hint: None, None
+            size: 350, 35
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}   
+
+        TextInput:
+            id: texto_senha
+            hint_text: "Insira sua senha ..."
+            size_hint: None, None
+            size: 350, 35
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+
+        Button:
+            id: login
+            text: "Entrar"
+            font_name: 'Georgia'
+            background_color: (0.380, 0.047, 0.153, 1)
+            size_hint: None, None
+            size: 200, 35
+            pos_hint: {'center_x': 0.5, 'top': 0.3}
+            border_radius: 15  # Add this line to set the border radius
+
+        Button:
+            id: cadastro
+            text: "Cadastro"
+            font_name: 'Georgia'
+            background_color: (0.675, 0.612, 0.553, 1)
+            size_hint: None, None
+            size: 200, 35
+            pos_hint: {'center_x': 0.5, 'top': 0.22}
+            border_radius: 15  # Add this line to set the border radius
+
+<Cadastro>
+    orientation: "vertical"
+
+    FloatLayout:
+        
+        Image:
+            source: "./imagens/branco.jpg"
+            size_hint: None, None
+            size: 450, 700
+            pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+
+        Button:
+            id: voltar
+            font_name: 'Georgia'
+            background_color: (0.380, 0.047, 0.153, 1)
+            size_hint: None, None
+            size: 20, 20
+            pos_hint: {'center_x': 0.5, 'top': 0.95}
+            border_radius: 15  # Add this line to set the border radius
+
+        Image:
+            source: "./imagens/branco.jpg"
+            size_hint: None, None
+            size: 450, 700
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+
+        Image:
+            source: "./imagens/branco.jpg"
+            size_hint: None, None
+            size: 450, 700
+            pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+
+        Image:
+            source: "./imagens/branco.jpg"
+            size_hint: None, None
+            size: 450, 700
+            pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+
+        Image:
+            source: "./imagens/branco.jpg"
+            size_hint: None, None
+            size: 450, 700
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+
+        Label:
+            text: 'Email:'
+            font_size: 20
+            font_name: 'Georgia'
+            color: (0.69, 0.52, 0.58, 1)
+            size_hint: None, None
+            size: self.texture_size[0], self.texture_size[1]
+            pos_hint: {'center_x': 0.5, 'top': 0.8}
+
+        Label:
+            text: 'Senha:'
+            font_size: 20
+            font_name: 'Georgia'
+            color: (0.69, 0.52, 0.58, 1)
+            size_hint: None, None
+            size: self.texture_size[0], self.texture_size[1]
+            pos_hint: {'center_x': 0.5, 'top': 0.65}
+
+        TextInput:
+            id: texto_emailc
+            hint_text: "Insira seu email ..."
+            size_hint: None, None
+            size: 350, 35
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}   
+
+        TextInput:
+            id: texto_senhac
+            hint_text: "Insira sua senha ..."
+            size_hint: None, None
+            size: 350, 35
+            pos_hint: {'center_x': 0.5, 'center_y': 0.55}
+
+        Button:
+            id: cadastroc
+            text: "Cadastro"
+            font_name: 'Georgia'
+            background_color: (0.675, 0.612, 0.553, 1)
+            size_hint: None, None
+            size: 200, 35
+            pos_hint: {'center_x': 0.5, 'top': 0.35}
+            border_radius: 15  # Add this line to set the border radius
+                
