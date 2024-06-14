@@ -5,6 +5,22 @@ from kivy.lang import Builder
 import os
 from functools import partial
 from kivy.uix.modalview import ModalView
+import pyrebase
+
+firebaseConfig = {
+                'apiKey': "AIzaSyCJEZWerZS9NRFo-l7KGSs0dmxcIMp27zk",
+                'authDomain': "telafire-cc3eb.firebaseapp.com",
+                'databaseURL': "https://trialauth-7eea1.firebaseio.com",
+                'projectId': "telafire-cc3eb",
+                'storageBucket': "telafire-cc3eb.appspot.com",
+                'messagingSenderId': "850280739259",
+                'appId': "1:850280739259:web:c010db88a786238cee549e"
+}
+
+firebase=pyrebase.initialize_app(firebaseConfig)
+db = firebase.database()
+auth=firebase.auth()
+
 
 Window.size = (300,600)
 
@@ -34,12 +50,29 @@ class TelaLogin(FloatLayout):
         self.texto_senha = self.ids.texto_senha
         self.texto_email = self.ids.texto_email
         self.login = self.ids.login
+        self.login.bind(on_release=lambda instance: self.login_user(self.texto_email.text, self.texto_senha.text))
         self.cadastro = self.ids.cadastro
         self.cadastro.bind(on_release=partial(self.entrar_cadastro))
 
     def entrar_cadastro(self, instance):
         cadastro = Cadastro()
         cadastro.open()
+
+    def login_user(self, email, password):
+        try:
+            user = auth.sign_in_with_email_and_password(email, password)
+            print("Logged in successfully!")
+            # You can now access the user's data in the Realtime Database
+            user_data = db.child("users").child(user.uid).get()
+            user_ref = db.child("users").push(user_data)
+            print(user_data.val())
+        except Exception as e:
+            print("Error logging in:", e)
+
+    def on_cadastro_button_press(self):
+        email = self.texto_email.text
+        password = self.texto_senha.text
+        self.login_user(email, password)
 
     def open(self):
         self._window = ModalView(size_hint=(1, 1))
@@ -60,11 +93,31 @@ class Cadastro(FloatLayout):
         self.voltar.bind(on_release=partial(self.voltar_login))
         self.texto_senhac = self.ids.texto_senhac
         self.texto_emailc = self.ids.texto_emailc
-        self.cadastro = self.ids.cadastroc
+        self.cadastroc = self.ids.cadastroc
+        self.cadastroc.bind(on_release=lambda instance: self.create_user(self.texto_emailc.text, self.texto_senhac.text))
 
     def voltar_login(self, instance):
         voltar = TelaLogin()
         voltar.open()
+
+    def create_user(self, email, password):
+        try:
+            user = auth.create_user_with_email_and_password(email, password)
+            print("User created successfully!")
+            # Crie um dicionário com os dados do usuário
+            user_data = {"email": email, "password": password}
+            # Salve os dados do usuário no banco de dados usando a chave gerada pelo Firebase
+            user_ref = db.child("users").push(user_data)
+            print("User data saved successfully!")
+        except Exception as e:
+            print("Error creating user:", e)
+
+
+    def on_cadastro_button_press(self):
+        email = self.texto_emailc.text
+        password = self.texto_senhac.text
+        self.create_user(email, password)
+
 
     def open(self):
         self._window = ModalView(size_hint=(1, 1))
